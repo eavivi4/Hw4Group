@@ -57,11 +57,10 @@ class WalletViewController: UIViewController, UITextFieldDelegate, UITableViewDa
                     self.userNameLabel.text = "\(userNameString)"
                 }
                 // totalAmount is calculated
-                self.totalAmountLabel.text = "Your Total Amount is $\(w.totalAmount)"
+                self.totalAmountLabel.text = "Your Total Amount is $\(String(format: "%.2f", w.totalAmount))"
+                
+                //keep updating
                 self.tableView.reloadData()
-                
-               
-                
             })
         }
     }
@@ -88,6 +87,7 @@ class WalletViewController: UIViewController, UITextFieldDelegate, UITableViewDa
         self.view.endEditing(true)
         return false
     }
+    
     @IBAction func startedEditing(_ sender: Any) {
         self.tapGestureRecognizer.isEnabled = true
     }
@@ -123,9 +123,9 @@ class WalletViewController: UIViewController, UITextFieldDelegate, UITableViewDa
         var total = w.accounts.count
         //have error checking for duplicate names
         if w.accounts.count != 0 {
-        for index in 0...total - 1 {
-            self.accountNames.append(w.accounts[index].name)
-        }
+            for index in 0...total - 1 {
+                self.accountNames.append(w.accounts[index].name)
+            }
         }
         
         while self.accountNames.contains("Account \(total + 1)") {
@@ -135,6 +135,7 @@ class WalletViewController: UIViewController, UITextFieldDelegate, UITableViewDa
     }
     
     @IBAction func xButtonPopUp() {
+        //hide view
         createView.isHidden = true
         
         //enable background interaction when done

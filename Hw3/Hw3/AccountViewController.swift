@@ -66,7 +66,6 @@ class AccountViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         alert.addAction(UIAlertAction(title: NSLocalizedString("Enter", comment: "Cancel action"), style: .default, handler: { _ in
             let text = Double(alert.textFields?.first?.text ?? "0")
             
-            
             //deposit
             Api.deposit(wallet: w, toAccountAt: self.currentIndex, amount: text ?? 0.0, completion: { _, _ in
         
@@ -78,6 +77,7 @@ class AccountViewController: UIViewController, UIPickerViewDataSource, UIPickerV
             self.view.endEditing(true)
         }))
         alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "Default action"), style: .cancel, handler: { _ in
+            
             //disable keyboard
             self.view.endEditing(true)
             
@@ -100,6 +100,7 @@ class AccountViewController: UIViewController, UIPickerViewDataSource, UIPickerV
             let text = Double(alert.textFields?.first?.text ?? "0")
             var number = text ?? 0.0
             let difference = w.accounts[self.currentIndex].amount - number
+            
             //check so that there isn't a negative balance
             if difference < 0 {
                 //if withdrawing too much, just take all the amount in account
@@ -114,6 +115,7 @@ class AccountViewController: UIViewController, UIPickerViewDataSource, UIPickerV
             self.view.endEditing(true)
         }))
         alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "Default action"), style: .cancel, handler: { _ in
+            
             //disable keyboard
             self.view.endEditing(true)
             
@@ -145,8 +147,10 @@ class AccountViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     }
     @IBAction func popUpDone() {
         
+        //when done, set variable for amount
         let transferAmount = Double(popUpTextField?.text ?? "0.0") ?? 0.0
         let difference = w.accounts[self.currentIndex].amount - transferAmount
+        
         //check so that there isn't a negative balance
         if difference < 0 {
             //if withdrawing too much, make error
@@ -154,6 +158,7 @@ class AccountViewController: UIViewController, UIPickerViewDataSource, UIPickerV
             popUpErrLabel.textColor = .red
             
         } else {
+            
             //hide pop up
             popUpView.isHidden = true
             depositOutlet.isUserInteractionEnabled = true
@@ -218,7 +223,7 @@ class AccountViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     }
         
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        
+
         //number of rows for picker
         return w.accounts.count - 1
     }
@@ -237,6 +242,7 @@ class AccountViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     @IBAction func startedEditing(_ sender: Any) {
         self.tapGestureRecognizer.isEnabled = true
     }
+    
     @IBAction func tap(_ sender: Any) {
         self.view.endEditing(true)
         self.popUpView.endEditing(true)
