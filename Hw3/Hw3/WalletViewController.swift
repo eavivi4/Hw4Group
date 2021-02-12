@@ -122,7 +122,7 @@ class WalletViewController: UIViewController, UITextFieldDelegate, UITableViewDa
         //set the placeholder
         var total = w.accounts.count
         //have error checking for duplicate names
-        if self.accountNames.count != 0 {
+        if w.accounts.count != 0 {
         for index in 0...total - 1 {
             self.accountNames.append(w.accounts[index].name)
         }
