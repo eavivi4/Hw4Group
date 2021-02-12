@@ -73,7 +73,7 @@ class AccountViewController: UIViewController, UIPickerViewDataSource, UIPickerV
             })
             
             //update amount on label
-            self.totalAmountLabel.text = String(w.accounts[self.currentIndex].amount)
+            self.totalAmountLabel.text = String(format: "%.2f", w.accounts[self.currentIndex].amount)
             //disable keyboard
             self.view.endEditing(true)
         }))
@@ -109,7 +109,7 @@ class AccountViewController: UIViewController, UIPickerViewDataSource, UIPickerV
             })
             
             //update amount on label
-            self.totalAmountLabel.text = String(w.accounts[self.currentIndex].amount)
+            self.totalAmountLabel.text = String(format: "%.2f", w.accounts[self.currentIndex].amount)
             //disable keyboard
             self.view.endEditing(true)
         }))
