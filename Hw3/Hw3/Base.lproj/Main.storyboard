@@ -201,6 +201,9 @@
                                         <rect key="frame" x="8" y="125" width="372" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="startedEditing:" destination="g04-9U-JPX" eventType="editingDidBegin" id="5Jn-a3-QOd"/>
+                                        </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fra-KC-Sky">
                                         <rect key="frame" x="164" y="202" width="60" height="44"/>
@@ -289,6 +292,9 @@
                             <constraint firstItem="ZHE-r1-eAc" firstAttribute="leading" secondItem="1Ly-5r-8Lv" secondAttribute="leading" constant="20" id="sOL-IQ-4e1"/>
                             <constraint firstItem="WAV-jG-dHM" firstAttribute="leading" secondItem="UZ1-bL-Z4x" secondAttribute="trailing" constant="7.3333333333333144" id="yNm-s9-N6s"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="wTA-Cc-skg" appends="YES" id="i1D-Sk-obZ"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="addButtonOutlet" destination="ZHE-r1-eAc" id="JLN-5i-pU3"/>
@@ -297,11 +303,17 @@
                         <outlet property="popUpErrLabel" destination="WTd-Hd-s9f" id="TG0-U0-2WJ"/>
                         <outlet property="popUpTextField" destination="QbL-O1-Sxn" id="pBd-dr-EZL"/>
                         <outlet property="tableView" destination="JWI-gl-03O" id="pY6-Vs-FaY"/>
+                        <outlet property="tapGestureRecognizer" destination="wTA-Cc-skg" id="Mgt-fV-ina"/>
                         <outlet property="totalAmountLabel" destination="bF2-aP-yav" id="8QF-wy-5nu"/>
                         <outlet property="userNameLabel" destination="WAV-jG-dHM" id="qIB-aI-pft"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6l0-Vk-rB5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="wTA-Cc-skg">
+                    <connections>
+                        <action selector="tap:" destination="g04-9U-JPX" id="vcr-a0-qah"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2419.6261682242989" y="72.570194384449252"/>
         </scene>
@@ -407,6 +419,9 @@
                                         <rect key="frame" x="8" y="170" width="372" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                        <connections>
+                                            <action selector="startedEditing:" destination="qYo-V0-haG" eventType="editingDidBegin" id="deu-Sk-GuI"/>
+                                        </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JaM-hK-vKF">
                                         <rect key="frame" x="8" y="8" width="30" height="46"/>
@@ -477,6 +492,9 @@
                             <constraint firstItem="EqJ-I5-W4C" firstAttribute="centerX" secondItem="Ghb-Qr-cdM" secondAttribute="centerX" id="rxC-s7-CJe"/>
                             <constraint firstItem="Zkr-Fw-h9L" firstAttribute="centerX" secondItem="Ghb-Qr-cdM" secondAttribute="centerX" id="xay-4A-5on"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="Iy4-Ch-OHI" appends="YES" id="gRn-aj-qP9"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="accountNameLabel" destination="c33-LK-u5l" id="hZN-By-OgF"/>
@@ -487,12 +505,18 @@
                         <outlet property="popUpErrLabel" destination="laV-AY-Etd" id="hMe-ba-mpX"/>
                         <outlet property="popUpTextField" destination="7qd-bK-vlr" id="GQL-cF-pZP"/>
                         <outlet property="popUpView" destination="V74-UM-Y1C" id="V1V-uy-l6G"/>
+                        <outlet property="tapGestureRecognizer" destination="Iy4-Ch-OHI" id="veI-zE-nOg"/>
                         <outlet property="totalAmountLabel" destination="AtN-4h-Lyx" id="qGK-qE-Zyw"/>
                         <outlet property="transferOutlet" destination="shs-f4-9iS" id="T36-if-NKH"/>
                         <outlet property="withdrawOutlet" destination="Zkr-Fw-h9L" id="I9o-Pa-yc2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XsC-J2-Ufz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="Iy4-Ch-OHI">
+                    <connections>
+                        <action selector="tap:" destination="qYo-V0-haG" id="88G-Vk-XN1"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="3092.5233644859813" y="72.570194384449252"/>
         </scene>

@@ -24,6 +24,7 @@ class AccountViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     @IBOutlet weak var withdrawOutlet: UIButton!
     @IBOutlet weak var transferOutlet: UIButton!
     @IBOutlet weak var deleteOutlet: UIButton!
+    @IBOutlet var tapGestureRecognizer: UITapGestureRecognizer!
     
     var accountsToTransfer : [Account] = []
     var pickedAccountIndex = 0
@@ -43,6 +44,7 @@ class AccountViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         pickerPopUp.dataSource = self
         pickerPopUp.delegate = self
         popUpErrLabel.text = nil
+        self.tapGestureRecognizer.isEnabled = false
         
         //initialize array for UIPicker
         accountsToTransfer = w.accounts
@@ -63,6 +65,7 @@ class AccountViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         let alert = UIAlertController(title: "Deposit", message: "Enter how much to deposit", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: NSLocalizedString("Enter", comment: "Cancel action"), style: .default, handler: { _ in
             let text = Double(alert.textFields?.first?.text ?? "0")
+            
             
             //deposit
             Api.deposit(wallet: w, toAccountAt: self.currentIndex, amount: text ?? 0.0, completion: { _, _ in
@@ -92,7 +95,6 @@ class AccountViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         
         //adds actions to alert for the popup
         let alert = UIAlertController(title: "Withdraw", message: "Enter how much to withdraw", preferredStyle: .alert)
-        
         alert.addAction(UIAlertAction(title: NSLocalizedString("Enter", comment: "Cancel action"), style: .default, handler: { _ in
             
             let text = Double(alert.textFields?.first?.text ?? "0")
@@ -232,4 +234,12 @@ class AccountViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         pickedAccountIndex = row
     }
     
+    @IBAction func startedEditing(_ sender: Any) {
+        self.tapGestureRecognizer.isEnabled = true
+    }
+    @IBAction func tap(_ sender: Any) {
+        self.view.endEditing(true)
+        self.popUpView.endEditing(true)
+        self.tapGestureRecognizer.isEnabled = false
+    }
 }

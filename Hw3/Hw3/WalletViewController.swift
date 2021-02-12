@@ -23,6 +23,8 @@ class WalletViewController: UIViewController, UITextFieldDelegate, UITableViewDa
     @IBOutlet weak var logOutButtonOutlet: UIButton!
     @IBOutlet weak var addButtonOutlet: UIButton!
     
+    @IBOutlet var tapGestureRecognizer: UITapGestureRecognizer!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -31,12 +33,14 @@ class WalletViewController: UIViewController, UITextFieldDelegate, UITableViewDa
         tableView.dataSource = self
         self.tableView.delegate = self
         
+        
         //set pop up initialization
         createView.center = CGPoint(x: self.view.center.x, y: self.view.center.y)
         createView.sizeToFit()
         createView.isHidden = true
         popUpTextField.delegate = self
         popUpErrLabel.text = nil
+        self.tapGestureRecognizer.isEnabled = false
         
         if Storage.authToken != nil {
             Api.user(completion: { response, error in
@@ -62,6 +66,7 @@ class WalletViewController: UIViewController, UITextFieldDelegate, UITableViewDa
         }
     }
     
+  
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == popUpTextField {
             
@@ -82,6 +87,9 @@ class WalletViewController: UIViewController, UITextFieldDelegate, UITableViewDa
         //dismiss keyboard on return
         self.view.endEditing(true)
         return false
+    }
+    @IBAction func startedEditing(_ sender: Any) {
+        self.tapGestureRecognizer.isEnabled = true
     }
     
     @IBAction func logOutButton() {
@@ -114,8 +122,10 @@ class WalletViewController: UIViewController, UITextFieldDelegate, UITableViewDa
         //set the placeholder
         var total = w.accounts.count
         //have error checking for duplicate names
+        if self.accountNames.count != 0 {
         for index in 0...total - 1 {
             self.accountNames.append(w.accounts[index].name)
+        }
         }
         
         while self.accountNames.contains("Account \(total + 1)") {
@@ -211,4 +221,10 @@ class WalletViewController: UIViewController, UITextFieldDelegate, UITableViewDa
                 return cell
     }
 
+    @IBAction func tap(_ sender: Any) {
+        self.view.endEditing(true)
+        self.createView.endEditing(true)
+        self.tapGestureRecognizer.isEnabled = false
+        
+    }
 }
