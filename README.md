@@ -1,5 +1,5 @@
-# Your Name
-## SID: Your Student ID
+# [The Big Bang Theory]!
+## Eden Avivi: 917278048, Ma Eint Poe: 915140330, 
 
 # WalletViewController additions with Hw4
 
@@ -9,7 +9,7 @@
 
 **textFieldShouldReturn(_ textField: UITextField)** Added that the textfield in the popup will apply to this delegate and if it is specifically that textfield, just dismiss the keyboard so that the user can press done (it hides that button).
 
-**startedEditing(_ sender: Any)** 
+**startedEditing(_ sender: Any)** Function enabling the tap gesture recognizer when user starts editing the sender of this function.
 
 **addButton()** Added button, so that when the user presses on it, it creates the popup (changing its aesthetics) and disables all background interaction until the user is done interacting with the pop up. Then, to set the placeholder for the default account name, the account names are entered into an array, which checks if the default name already exists and if it is, while it exists, add to the index until the name does not exist. Then, it is set to be the default name of "Account n+1" or "Account lastNumberInThe TableView +1".
 
@@ -19,7 +19,7 @@
 
 **tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)** Function from the table view protocol in which there is access to the currently selected cell. If a user selects a cell, AccountViewController is presented, while the cell passed to that view controller is the one selected by the user, having it customizable to what the user selects.
 
-**tap(_ sender: Any)**
+**tap(_ sender: Any)** When the user taps on the sender of this function, the keyboard is dismissed and tap gesture recognizer is disabled.
 
 # AccountViewController
 
@@ -50,6 +50,6 @@
 
 **pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)** Returns the index that the user selects, to keep track of which account the user wants to transfer money into.
 
-**startedEditing(_ sender: Any)**
+**startedEditing(_ sender: Any)** Function, like the previous one in WalletViewController, enabling the tap gesture recognizer when user starts editing the sender of this function.
 
-**tap(_ sender: Any)**
+**tap(_ sender: Any)** When the user taps on the sender of this function, like the previous one in WalletViewController, the keyboard is dismissed and tap gesture recognizer is disabled.
