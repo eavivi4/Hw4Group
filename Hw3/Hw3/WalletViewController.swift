@@ -146,6 +146,12 @@ class WalletViewController: UIViewController, UITextFieldDelegate, UITableViewDa
         
         //disable keyboard
         self.popUpTextField.endEditing(true)
+        
+        //clear error if exists
+        self.popUpErrLabel.text = nil
+        
+        //clear textfield
+        self.popUpTextField.text = nil
     }
     
     @IBAction func doneButtonPopUp() {
@@ -181,12 +187,12 @@ class WalletViewController: UIViewController, UITextFieldDelegate, UITableViewDa
             Api.setAccounts(accounts: w.accounts, completion: { response, error in
                 //reload the data and have the pop up be correct
                 self.tableView.reloadData()
-                self.popUpTextField.placeholder = "Account \(w.accounts.count + 1)"
             })
         
             //stop editing if creating done
             self.popUpTextField.endEditing(true)
             self.popUpTextField.text = nil
+            self.popUpErrLabel.text = nil
         
         }
     }
